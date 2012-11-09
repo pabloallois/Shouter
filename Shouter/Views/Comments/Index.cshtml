@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Shouter.Models.Comment>
+
+@{
+    ViewBag.Title = "Your posts";
+}
+
+<h2>Welcome @Session["email"] !</h2>
+
+<p>
+    @using (Html.BeginForm())
+    {
+        <div>
+        <p>Insert your comment:</p> @Html.TextArea("commentText")
+        <input type="submit" value="Post" class="btn"/>
+        </div>
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            User
+        </th>
+        <th>
+            Posted
+        </th>
+        <th>
+            Text
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <a href="mailto:@Html.DisplayFor(modelItem => item.email)">@Html.DisplayFor(modelItem => item.email)</a>
+        </td>
+        <td>
+            @{
+    double time = Math.Truncate((DateTime.Now-item.dateTime).TotalMinutes);
+    double timeToShow;
+    if (time > 60)
+    {
+        timeToShow = Math.Truncate(time / 60);
+        <text>@timeToShow hours ago</text>
+    }
+    else
+    {
+        timeToShow = time;
+        <text>@timeToShow minutes ago</text>
+    }
+        }
+    
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comment)
+        </td>
+    </tr>
+}
+
+</table>
