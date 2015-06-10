@@ -6,11 +6,13 @@ using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Moravia.Shouter.Core.Model;
 
-namespace Shouter.Models
+namespace Moravia.Shouter.Core.DataAccess
 {
-    public class CommentsModel
+    public class CommentDataAccess
     {
+        #region GetComments
         public static IEnumerable<Comment> GetComments()
         {
             
@@ -20,7 +22,9 @@ namespace Shouter.Models
             sort.Descending("dateTime");
             return comments.FindAll().SetSortOrder(sort).ToList<Comment>();
         }
+        #endregion
 
+        #region InsertComment
         public static void InsertComment(Comment comment)
         {
             MongoDatabase db = DBConnection.Db();
@@ -34,5 +38,6 @@ namespace Shouter.Models
             commentObject["dateTime"] = DateTime.Now;
             comments.Insert(commentObject);
         }
+        #endregion
     }
 }

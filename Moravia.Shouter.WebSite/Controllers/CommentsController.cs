@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Shouter.Models;
+using Moravia.Shouter.Core.Services;
+using Moravia.Shouter.Core.Model;
 
 namespace Shouter.Controllers
 {
@@ -14,7 +15,7 @@ namespace Shouter.Controllers
 
         public ActionResult Index()
         {
-            return View(CommentsModel.GetComments());
+            return View(CommentServices.GetComments());
         }
 
         [HttpPost]
@@ -23,7 +24,7 @@ namespace Shouter.Controllers
             Comment newComment = new Comment();
             newComment.email = Session["email"].ToString();
             newComment.comment = commentText;
-            CommentsModel.InsertComment(newComment);
+            CommentServices.InsertComment(newComment);
             return RedirectToAction("Index", "Comments");
         }
     }

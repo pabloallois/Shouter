@@ -1,25 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson.Serialization.IdGenerators;
-using MongoDB.Bson;
+using System.Configuration;
 using MongoDB.Driver;
 
-namespace Shouter.Models
+namespace Moravia.Shouter.Core.DataAccess
 {
     public class DBConnection
     {
         public static MongoDatabase Db()
         {
+
+            var mongoDbServer = ConfigurationManager.AppSettings["MongoDbServer"];
+            var mongoDbPort = Convert.ToInt32(ConfigurationManager.AppSettings["MongoDbPort"]);
+            var mongoDbName = ConfigurationManager.AppSettings["MongoDbName"];
+
             // Create server settings to pass connection string, timeout, etc.
             MongoServerSettings settings = new MongoServerSettings();
-            settings.Server = new MongoServerAddress("localhost", 27017);
+            settings.Server = new MongoServerAddress(mongoDbServer, mongoDbPort);
             // Create server object to communicate with our server
             MongoServer server = new MongoServer(settings);
             // Get our database instance to reach collections and data
-            var database = server.GetDatabase("shouter");
+            var database = server.GetDatabase(mongoDbName);
+            
             return database;
         }
     }

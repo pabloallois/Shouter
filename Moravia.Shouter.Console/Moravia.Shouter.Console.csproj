@@ -8,8 +8,8 @@
     <ProjectGuid>{788AE6FA-0B49-4AF6-9058-32CEAFC27F9A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleApplication2</RootNamespace>
-    <AssemblyName>ConsoleApplication2</AssemblyName>
+    <RootNamespace>Moravia.Shouter.Console</RootNamespace>
+    <AssemblyName>Moravia.Shouter.Console</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Moravia.Shouter.Console.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\Shouter\MongoDB\MongoDB.Bson.dll</HintPath>
@@ -51,6 +54,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Moravia.Shouter.Core\Moravia.Shouter.Core.csproj">
+      <Project>{A5787DF9-7C3B-43DA-A5EC-38E09CDFC5FA}</Project>
+      <Name>Moravia.Shouter.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

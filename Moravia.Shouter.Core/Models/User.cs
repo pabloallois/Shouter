@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Shouter.Models
+namespace Moravia.Shouter.Core.Model
 {
     public class User
     {
